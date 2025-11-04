@@ -1,0 +1,1 @@
+# this is a Tampermonkey script that copy text from smart-docs
