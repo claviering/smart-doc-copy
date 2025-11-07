@@ -2,6 +2,8 @@
 
 A high-performance Tampermonkey userscript that enhances smart-docs API documentation pages by adding convenient "Copy" buttons to automatically extract and format API documentation as clean, readable Markdown with JSON examples and inline comments.
 
+![demo](./demo.webp)
+
 ## Features
 
 ✨ **One-Click Copy** - Copy entire API documentation sections with a single click
