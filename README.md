@@ -36,6 +36,8 @@ The script will automatically run on your smart-docs pages!
 4. The button will turn blue and show "Copied!" for 2 seconds
 5. Paste the copied markdown anywhere you need it!
 
+Tip: The copied Markdown is formatted to be used directly as an AI prompt. Paste it into an AI assistant (for example, ChatGPT, Bard, or Claude) to generate client code, TypeScript interfaces, tests, or human-friendly explanations. The clear headings, code blocks, and inline JSON comments give the model useful context about fields, types, and examples.
+
 ## Output Format
 
 The script generates clean, structured markdown with the following sections:
