@@ -174,8 +174,8 @@
                 let description = cells[2].textContent.trim();
                 const required = cells[3].textContent.trim();
                 
-                // Remove "No comments found." from description
-                if (description === 'No comments found.') {
+                // Remove "No comments found." and "响应数据" from description
+                if (description === 'No comments found.' || description === '响应数据') {
                     description = '';
                 }
                 
@@ -231,8 +231,8 @@
                 const fieldName = cells[0].textContent.trim();
                 const description = cells[2].textContent.trim();
                 
-                // Skip "No comments found."
-                if (description && description !== '-' && description !== 'No comments found.') {
+                // Skip "No comments found." and "响应数据"
+                if (description && description !== '-' && description !== 'No comments found.' && description !== '响应数据') {
                     // Clean field name (remove tree symbols)
                     const cleanName = fieldName.replace(/^[└─\s&nbsp;]+/, '');
                     fieldDescriptions.set(cleanName, description);
@@ -354,11 +354,11 @@
                 // Add comments to response JSON
                 responseJson = addCommentsToResponseJson(responseJson, table);
                 markdown += '\n```json\n' + responseJson + '\n```\n';
-                markdown += '\n* add typescript interface for response\n';
+                markdown += '\n* add typescript interface for response, if it is js file, add jsdoc comments for response\n';
             } else if (table?.tagName === 'TABLE') {
                 // Fallback to generating JSON from table
                 markdown += tableToJsonExample(table);
-                markdown += '\n* add typescript interface for response\n';
+                markdown += '\n* add typescript interface for response, if it is js file, add jsdoc comments for response\n';
             }
         }
 
