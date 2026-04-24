@@ -354,12 +354,13 @@
                 // Add comments to response JSON
                 responseJson = addCommentsToResponseJson(responseJson, table);
                 markdown += '\n```json\n' + responseJson + '\n```\n';
-                markdown += '\n* add typescript interface for response, if it is js file, add jsdoc comments for response\n';
             } else if (table?.tagName === 'TABLE') {
                 // Fallback to generating JSON from table
                 markdown += tableToJsonExample(table);
-                markdown += '\n* add typescript interface for response, if it is js file, add jsdoc comments for response\n';
             }
+            markdown += '\n* add typescript interface and comment for parameter and response, if it is js file, add jsdoc comments for response';
+            markdown += '\n* using enum instead of only number or string.\n';
+            markdown += '\nexample:\n\n```typescript\ninterface TypescriptInterface {\n  /**\n   * 是否对外展示（0：不展示，1：展示）\n   */\n  status: number\n}\n```\n';
         }
 
         return markdown;
