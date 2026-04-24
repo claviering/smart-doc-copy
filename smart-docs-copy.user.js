@@ -348,6 +348,10 @@
             
             // Get response example JSON
             let responseJson = extractResponseJson(sect2);
+            // replace `"code": 0` to `"code": 200`
+            if (responseJson) {
+                responseJson = responseJson.replace(/"code"\s*:\s*0/g, '"code": 200');
+            }
             const table = responseFieldsHeader.parentElement.parentElement.nextElementSibling;
             
             if (responseJson && table?.tagName === 'TABLE') {
