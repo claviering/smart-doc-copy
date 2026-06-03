@@ -233,8 +233,9 @@
                 
                 // Skip "No comments found." and "响应数据"
                 if (description && description !== '-' && description !== 'No comments found.' && description !== '响应数据') {
-                    // Clean field name (remove tree symbols)
-                    const cleanName = fieldName.replace(/^[└─\s&nbsp;]+/, '');
+                    // Clean field name: strip tree-drawing chars and all flavors of whitespace
+                    // including non-breaking spaces (U+00A0) that the DOM uses for &nbsp;
+                    const cleanName = fieldName.replace(/^[└─\s\u00a0]+/, '');
                     fieldDescriptions.set(cleanName, description);
                 }
             }
@@ -244,8 +245,9 @@
 
         // Add comments to matching fields
         fieldDescriptions.forEach((description, fieldName) => {
-            // Match the field in JSON and add comment, preserving commas
-            // Pattern: "fieldName": value, or "fieldName": value\n or "fieldName": value}
+            // Match the field in JSON and add comment, preserving commas.
+            // The value group captures everything up to a comma, closing brace/bracket,
+            // or newline — then the optional comma is captured separately.
             const fieldRegex = new RegExp(`("${fieldName}"\\s*:\\s*)([^,\\n}\\]]+)(,?)`, 'g');
             commentedJson = commentedJson.replace(fieldRegex, (match, prefix, value, comma) => {
                 return `${prefix}${value}${comma} // ${description}`;
@@ -443,10 +445,8 @@
             if (!button) return;
 
             if (entry.isIntersecting) {
-                // Element is in viewport
                 button.classList.add('visible');
             } else {
-                // Element is out of viewport
                 button.classList.remove('visible');
             }
         });
